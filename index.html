@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody&family=Gajraj+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <span><centre><h1>Locate the ISS</h1></centre></span>
+    <section id="aboutISS">
+        <span><h2>What is the ISS?</h2></span>
+        <p>The International Space Station or ISS is the largest artificial object floating around in space. It travels around the Earth at an average speed of 27,700 km/h. At night, it can easily be seen from Earth, as it flies 320 kilometers above us. 16 countries, including the USA, Russia, Japan, Canada, and many ESA member states worked together to build the Station. It is the largest satellite in low Earth orbit, regularly visible to the naked eye from Earth's surface.The largest part of the ISS is a central truss to which 16 huge solar panels are attached. The modules where the astronauts live and work are attached to the center of the truss. Europe’s biggest ISS project is the Columbus science laboratory, where astronauts can carry out scientific experiments in weightless conditions.</p>
+        <span><img src="https://th.bing.com/th/id/OIP.Lu7OaSEa4VOeb7IHKztOAAHaEK?pid=ImgDet&rs=1" class="center"></span>
+    </section>
+    <section id="Locater">
+        <span><h2>Where is the ISS?</h2><h6><i>Powered by Open-Notify™️</i></h6></span>
+        <p>
+            <h3>How does this work?</h3>
+            <p>This website uses <a href="http://open-notify.org/Open-Notify-API/ISS-Location-Now/" target="_blank" style="text-decoration:none"> Open-Notify™️'s ISS Locator API</a> to find the location of the International Space Station.</p>
+        </p>
+        <div>
+        <p>Latitude: <span id="latitude"></span></p>
+        <p>Longitude: <span id="longitude"></span></p>
+        </div>
+    <script>
+      function updateLocation() {
+        fetch('http://api.open-notify.org/iss-now.json')
+          .then(response => response.json())
+          .then(data => {
+            const latitude = data.iss_position.latitude;
+            const longitude = data.iss_position.longitude;
+
+            document.getElementById('latitude').textContent = latitude;
+            document.getElementById('longitude').textContent = longitude;
+          });
+      }
+
+      // Update the location every 5 seconds
+      setInterval(updateLocation, 1);
+    </script>
+    </section>
+</body>
+</html>
